@@ -14,7 +14,7 @@ from sklearn.preprocessing import MinMaxScaler
 sc = MinMaxScaler(feature_range=(0,1))
 training_set_scaled = sc.fit_transform(training_set)
 
-#Creating a dataset with 60 timesteps and 1 output
+#Creating a dataset with 120 timesteps and 1 output
 X_train = []
 y_train = []
 for i in range(120, 1258):
@@ -48,6 +48,9 @@ regressor.add(LSTM(units=90 , return_sequences=True))
 regressor.add(Dropout(0.2))
 #Adding the fifth LSTM Layer and Dropout Regularization to avoid Overfitting
 regressor.add(LSTM(units=95, return_sequences=True))
+regressor.add(Dropout(0.2))
+#Adding the sixth LSTM Layer and Dropout Regularization to avoid Overfitting
+regressor.add(LSTM(units=100, return_sequences=True))
 regressor.add(Dropout(0.2))
 #Adding the output layer
 regressor.add(Dense(units=1))
